@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import "./App.css"
+import { Button, Modal, ModalBody } from "reactstrap"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.toggleModal = this.toggleModal.bind(this)
+
+    this.state = {
+      isModalOpen: false
+    }
+  }
+
+  toggleModal() {
+    this.setState({
+      isModalOpen: !this.state.isModalOpen
+    })
+  }
+
+  render() {
+    return (
+      <>
+        <h1>Hello World</h1>
+        <Button color="primary" onClick={this.toggleModal}>
+          primary
+        </Button>{" "}
+        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+          <ModalBody>
+            <p>Hello world</p>
+          </ModalBody>
+        </Modal>
+      </>
+    )
+  }
 }
 
-export default App;
+export default App
